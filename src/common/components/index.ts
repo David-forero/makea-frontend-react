@@ -1,7 +1,7 @@
-import Cards from './Cards';
-import Header from './Header';
+import CardProduct from './CardProduct';
+import Checkout from './Checkout';
 
 export {
-    Cards, 
-    Header
+    CardProduct, 
+    Checkout
 }
