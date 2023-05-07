@@ -25,13 +25,15 @@ const CardProduct = ({title, description, price, id, img}: Props) => {
       <div className="mt-4 flex justify-between">
         <div>
           <h3 className="text-sm text-gray-700">
-            <p className="line-clamp-1">
+            <p className="line-clamp-2">
               {title}
             </p>
           </h3>
-          <p className="mt-5 text-sm text-gray-500 line-clamp-2">{description}</p>
+          <p className="mt-2 text-sm text-gray-500 line-clamp-3">
+          {description}
+          </p>
         </div>
-        <p className="text-sm font-medium text-gray-900">${price}</p>
+        <p className="text-sm font-medium text-green-600">${price}</p>
       </div>
     </div>
   );

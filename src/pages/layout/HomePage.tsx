@@ -3,18 +3,22 @@ import { Outlet } from "react-router-dom";
 import { BsMinecartLoaded } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { Checkout } from "../../common/components";
 import logo from '../../assets/logo.png';
+import { useBasketContext } from "../../context/BasketContext";
+import { useOrderContext } from "../../context/OrderContext";
+import { Checkout } from "../components";
 const Header = () => {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
-  // const router = useRouter();
+  const {items} = useBasketContext();
+
+  const {showCheckout, setShowCheckout} = useOrderContext();
 
   return (
     <>
-      <Checkout />
+      <Checkout show={showCheckout} setShow={setShowCheckout} />
 
-      <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
+      <header className="sticky top-0 z-10 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
         {/* left */}
         <div
           onClick={() => navigate('/')}
@@ -23,7 +27,7 @@ const Header = () => {
           <img
             src={logo}
             alt="logo makea"
-            className="h-10 w-14"
+            className="h-10 w-12"
           />
           <h2 className="text-blue-800 font-bold text-xl">Makea</h2>
         </div>
@@ -51,11 +55,11 @@ const Header = () => {
           </p>
 
           <div
-            // onClick={() => navigate("/checkout")}
+            onClick={() => setShowCheckout(true)}
             className="relative  link flex items-center cursor-pointer"
           >
             <span className="absolute text-[12px] top-0 right-6 md:-right-5 h-5 w-5 bg-blue-800 text-center rounded-full text-white flex justify-center items-center font-bold">
-              1
+              {items && items.length}
             </span>
 
             <BsMinecartLoaded className="h-10" />
