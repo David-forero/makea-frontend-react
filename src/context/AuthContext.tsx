@@ -1,7 +1,9 @@
-import { useContext, createContext, ReactNode } from "react";
+import { useContext, createContext, ReactNode, useState, useCallback } from "react";
 
 interface IAuthContext {
-  // variables
+  user: any
+  signUp: any,
+  signIn: any
 }
 
 interface IAuthProviderProps {
@@ -11,12 +13,26 @@ interface IAuthProviderProps {
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: IAuthProviderProps) => {
+
+  const [user, setUser] = useState(null);
+
+  const signIn = useCallback(async () => {
+      
+  },[])
+  
+  const signUp = useCallback(async () => {
+      
+  },[])
+
   return (
     <AuthContext.Provider
       value={
         {
           /*🔻  Variables 🔻*/
+          user,
           /*🔻  Funciones 🔻*/
+          signIn,
+          signUp
         }
       }
     >
