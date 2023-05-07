@@ -6,7 +6,7 @@ const getToken = () => {
 }
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:4000',
+    baseURL: import.meta.env.VITE_BACKEND,
     // timeout: 5000,
     headers: {
         Authorization: getToken() 

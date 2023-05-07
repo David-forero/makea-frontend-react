@@ -2,11 +2,14 @@
 export default {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/common/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 
