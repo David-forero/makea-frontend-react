@@ -4,7 +4,7 @@ import { BsMinecartLoaded } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Checkout } from "../../common/components";
-
+import logo from '../../assets/logo.png';
 const Header = () => {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
@@ -17,14 +17,15 @@ const Header = () => {
       <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
         {/* left */}
         <div
-          // onClick={() => router.push("/")}
-          className="relative flex items-center h-10 cursor-pointer my-auto"
+          onClick={() => navigate('/')}
+          className="relative flex items-center h-10 space-x-2 cursor-pointer my-auto hover:opacity-60"
         >
           <img
-            src="https://links.papareact.com/qd3"
+            src={logo}
             alt="logo makea"
-            className="h-10 w-28"
+            className="h-10 w-14"
           />
+          <h2 className="text-blue-800 font-bold text-xl">Makea</h2>
         </div>
 
         {/* middle */}
@@ -46,7 +47,7 @@ const Header = () => {
             className="hidden md:inline cursor-pointer"
             onClick={() => navigate("/auth/signin")}
           >
-            Login
+            Iniciar Sesión
           </p>
 
           <div
