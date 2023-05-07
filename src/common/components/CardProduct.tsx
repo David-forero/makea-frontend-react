@@ -11,6 +11,8 @@ type Props = {
 
 const CardProduct = ({}: Props) => {
   const navigate = useNavigate();
+  console.log(import.meta.env.VITE_SOME_KEY);
+  
 
   return (
     <div className="group relative" onClick={() => navigate('/furniture/34124234234')}>
