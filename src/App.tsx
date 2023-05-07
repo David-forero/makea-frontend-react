@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth, HomePage } from "./pages/layout";
 
 //Views 👀
-import { DetailsFurniture, Home, PageNotFound } from "./pages";
+import { DetailsFurniture, Home, Orders, PageNotFound } from "./pages";
 import { SignIn, SignUp } from "./pages/auth";
 
 //Context 🔎
@@ -25,6 +25,7 @@ function App() {
                 {/* Pages */}
                 <Route path="/" element={<HomePage />}>
                   <Route index element={<Home />} />
+                  <Route path="/orders" element={<Orders />} />
                   <Route
                     path="/furniture/:furnitureId"
                     element={<DetailsFurniture />}
