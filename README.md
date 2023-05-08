@@ -1,7 +1,5 @@
 
-<div align="center" class="tip" markdown="1" style>
-![screenshot](images/Screenshot.png)
-</div>
+![Captura de pantalla de 2023-05-07 22-54-59](https://user-images.githubusercontent.com/54685136/236823169-154350aa-0555-4207-b6cf-98adc299b4f9.png)
 
 # PROYECTO MAKEA 
 Proyecto elaborado con el fin de demostrar conocimiento y soluciones a una empresa ficticia que dedica a vender muebles modernos basado en una
@@ -10,15 +8,13 @@ los artículos disponibles en el sitio.
 
 Pd: Tuve que soñar y pensar como mueble para realizar este proyecto :(
 
-## 👀 Demostración
-
-> **Demo:** http://localhost:3000/products
-
 ## 🛠️ Instalación
 
 ### ⚠️ Requerimientos
 
-`🔹Tener instalado la db de Mongodb`
+`🔹Tener instalado la db de Mongodb (opcional)`
+
+`🔹Tener instalado stripe CLI (opcional)`
 
 `🔹Tener Visual Studio o cualquier editor de código`
 
@@ -42,6 +38,23 @@ yarn install
 ```bash
 npm i 
 ``` 
+
+### Envs FrontWeb
+```bash
+ "STRIPE_SIGNING_SECRET":"whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj",
+      "STRIPE_SECRET_KEY": "sk_test_51Mv6VHIfOreT1iriuiyl9ezB5TTS0I69zUMsnemPqiMEXR7B26PLWcBBZLEFNtkgRt3garma8ykEe7QHFObQO2y300JUrSbe4Q",
+      "STRIPE_PUBLIC_KEY": "pk_test_51Mv6VHIfOreT1iriQicUaa305lWrK9cdqrKeEIdpE00Zjf64uRMskaCsBgafm8KJrgfZLi3r3KrnyjI0oG1mShus003w2cZbvh",
+      "BACKEND": "http://10.0.2.2:3000"
+``` 
+
+### Envs App
+```bash
+ "STRIPE_SIGNING_SECRET":"whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj",
+      "STRIPE_SECRET_KEY": "sk_test_51Mv6VHIfOreT1iriuiyl9ezB5TTS0I69zUMsnemPqiMEXR7B26PLWcBBZLEFNtkgRt3garma8ykEe7QHFObQO2y300JUrSbe4Q",
+      "STRIPE_PUBLIC_KEY": "pk_test_51Mv6VHIfOreT1iriQicUaa305lWrK9cdqrKeEIdpE00Zjf64uRMskaCsBgafm8KJrgfZLi3r3KrnyjI0oG1mShus003w2cZbvh",
+      "BACKEND": "http://10.0.2.2:3000"
+``` 
+
 
 ## 📌 Las necesidades del negocio en forma de producto tecnológico
 
@@ -84,7 +97,7 @@ Otra ventaja de tener una tienda virtual es que puede expandir el alcance de la 
 	3. 🖼️ Diagrama:
 	</summary>
   
- aaaaaaaaaa
+![_Diagrama de flujo](https://user-images.githubusercontent.com/54685136/236823430-b1f43d75-53bb-4926-9842-c9793f2f4c45.png)
   
 </details>
 
@@ -228,11 +241,14 @@ Mayor alcance geográfico, lo que permite llegar a una audiencia más amplia y p
 ## 📲 Aplicativo movil
 
 ### Descarga de la apk
+https://expo.dev/accounts/daele/projects/makea_app/builds/c4e72081-ee40-417d-bce9-8bb20df567ff
 
 ### QR si tienes ExpoGo
-
-### Repositorio
-
-## 🗃️ Repositorio del backend de nest
+![Captura de pantalla de 2023-05-08 11-36-02](https://user-images.githubusercontent.com/54685136/236876838-12b1106d-5769-4422-b999-f25711fcdff0.png)
 
 
+### 📦️ Repositorio
+
+> **Backend de Nest:** https://github.com/David-forero/makea-backend
+
+> **App React Native:** https://github.com/David-forero/makea-app
