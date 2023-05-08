@@ -30,9 +30,6 @@ const OrderProvider = ({ children }: IOrderProviderProps) => {
       sessionId: data.data.id
     })
 
-    console.log(result);
-    
-
     if (result.error) alert(result.error.message)
     },[])
   
