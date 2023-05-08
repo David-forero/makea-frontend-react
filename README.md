@@ -93,7 +93,58 @@ Otra ventaja de tener una tienda virtual es que puede expandir el alcance de la 
 	4. ✍️ Psudocodigo:
 	</summary>
   
- aaaaaaaaaa
+ ```
+ function init(){
+    let carrito = []
+    let agregarProductoAlCarrito;
+    let comprarProducto;
+    let isAuthenticated = false;
+    let tieneCuenta = false;
+
+    function crearCuenta() {
+        let isAuthenticated = true;
+    }
+
+    function iniciarSession() {
+        //Tiene cuenta?
+        if (tieneCuenta) {
+            isAuthenticated = true
+        }else{
+            crearCuenta()
+        }
+    }
+
+    //Primero se obtiene los productos de makea, mi parce 🧐
+    const catalogo = obtenerCatalogoDeProductos();
+
+    //Obtengo mi producto que he seleccionado 👀
+    const producto = traerProducto(catalogo[0].id)
+
+    //Agregar al producto al carrito? 🤔
+    if (agregarProductoAlCarrito === true) {
+        carrito.push({...producto, cantidad: 1});
+    }else{
+        return;
+    }
+
+    //comprar producto/s? 📦️
+    if (comprarProducto === true) {
+        //No esta autenticado? va a tener que iniciar sesión
+        if (!isAuthenticated) {
+            return iniciarSession()
+        }
+
+        //Haciendo compra del producto... 🤞
+        pagadoComprarProducto(){
+            return creandoOrden();
+        }
+
+        
+    }else{
+        return;
+    }
+}
+ ```
   
 </details>
 
