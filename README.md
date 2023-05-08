@@ -39,12 +39,12 @@ yarn install
 npm i 
 ``` 
 
-### Envs FrontWeb
+### Envs Beckend
 ```bash
  "STRIPE_SIGNING_SECRET":"whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj",
       "STRIPE_SECRET_KEY": "sk_test_51Mv6VHIfOreT1iriuiyl9ezB5TTS0I69zUMsnemPqiMEXR7B26PLWcBBZLEFNtkgRt3garma8ykEe7QHFObQO2y300JUrSbe4Q",
       "STRIPE_PUBLIC_KEY": "pk_test_51Mv6VHIfOreT1iriQicUaa305lWrK9cdqrKeEIdpE00Zjf64uRMskaCsBgafm8KJrgfZLi3r3KrnyjI0oG1mShus003w2cZbvh",
-      "BACKEND": "http://10.0.2.2:3000"
+      "BACKEND": "http://localhost:3000"
 ``` 
 
 ### Envs App
@@ -52,8 +52,19 @@ npm i
  "STRIPE_SIGNING_SECRET":"whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj",
       "STRIPE_SECRET_KEY": "sk_test_51Mv6VHIfOreT1iriuiyl9ezB5TTS0I69zUMsnemPqiMEXR7B26PLWcBBZLEFNtkgRt3garma8ykEe7QHFObQO2y300JUrSbe4Q",
       "STRIPE_PUBLIC_KEY": "pk_test_51Mv6VHIfOreT1iriQicUaa305lWrK9cdqrKeEIdpE00Zjf64uRMskaCsBgafm8KJrgfZLi3r3KrnyjI0oG1mShus003w2cZbvh",
-      "BACKEND": "http://10.0.2.2:3000"
+       "BACKEND": "http://10.0.2.2:3000",
 ``` 
+
+### Envs FrontWeb
+```bash
+ VITE_HOST=http://localhost:5173
+=foobar
+VITE_STRIPE_SIGNING_SECRET=whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj
+VITE_STRIPE_SECRET_KEY=sk_test_51Mv6VHIfOreT1iriuiyl9ezB5TTS0I69zUMsnemPqiMEXR7B26PLWcBBZLEFNtkgRt3garma8ykEe7QHFObQO2y300JUrSbe4Q
+VITE_STRIPE_PUBLIC_KEY=pk_test_51Mv6VHIfOreT1iriQicUaa305lWrK9cdqrKeEIdpE00Zjf64uRMskaCsBgafm8KJrgfZLi3r3KrnyjI0oG1mShus003w2cZbvh
+VITE_BACKEND=http://localhost:3000
+``` 
+
 
 
 ## 📌 Las necesidades del negocio en forma de producto tecnológico
