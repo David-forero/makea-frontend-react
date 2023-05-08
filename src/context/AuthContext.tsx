@@ -1,9 +1,18 @@
-import { useContext, createContext, ReactNode, useState, useCallback } from "react";
+import {
+  useContext,
+  createContext,
+  ReactNode,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import { post } from "../common/functions/http";
 
 interface IAuthContext {
-  user: any
-  signUp: any,
-  signIn: any
+  user: any;
+  signUp: any;
+  signIn: any;
+  auth: boolean;
 }
 
 interface IAuthProviderProps {
@@ -13,28 +22,43 @@ interface IAuthProviderProps {
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: IAuthProviderProps) => {
-
   const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(false);
 
-  const signIn = useCallback(async () => {
-      
-  },[])
-  
-  const signUp = useCallback(async () => {
-      
-  },[])
+  useEffect(() => {
+    setAuth(JSON.parse(localStorage.getItem("auth") || ""));
+  }, [localStorage.getItem("auth")]);
+
+  const signIn = useCallback(async (formData: IAuthContext, navigate: any) => {
+    const { data } = await post("/signin", formData);
+    setUser(data.data);
+    localStorage.setItem("user", JSON.stringify(data.data));
+    localStorage.setItem("auth", JSON.stringify(true));
+    navigate('/')
+  }, []);
+
+  const signUp = useCallback(async (formData: IAuthContext, navigate: any) => {
+    const { data } = await post("/signup", formData);
+    console.log(data);
+    
+    if (data.status === 200) {
+      setUser(data.data);
+      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("auth", JSON.stringify(true));
+      navigate('/')
+    }
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={
-        {
-          /*🔻  Variables 🔻*/
-          user,
-          /*🔻  Funciones 🔻*/
-          signIn,
-          signUp
-        }
-      }
+      value={{
+        /*🔻  Variables 🔻*/
+        user,
+        auth,
+        /*🔻  Funciones 🔻*/
+        signIn,
+        signUp,
+      }}
     >
       {children}
     </AuthContext.Provider>

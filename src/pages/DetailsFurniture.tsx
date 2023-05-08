@@ -2,9 +2,11 @@ import { useEffect } from "react"
 import { useFurnitureContext } from "../context/FurnitureContext"
 import { useParams } from "react-router-dom";
 import { useBasketContext } from "../context/BasketContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const DetailsFurniture = () => {
   const {addToBasket} = useBasketContext()
+  const {auth} = useAuthContext();
   const {getFurniture, furniture} = useFurnitureContext();
   const {furnitureId} = useParams();
 
@@ -69,8 +71,12 @@ const DetailsFurniture = () => {
   
           <form className="mt-10">
            
-  
-            <button type="button" onClick={() => addToBasket(furniture)} className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
+          {auth ? (
+                        <button type="button" onClick={() => addToBasket(furniture)} className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
+
+          ) : (
+            <button type="button" onClick={() => addToBasket(furniture)} className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Iniciar sesión</button>
+          )}
           </form>
         </div>
   
