@@ -33,9 +33,6 @@ const OrderProvider = ({ children }: IOrderProviderProps) => {
   const createOrder = useCallback(async (items: any, email: string) => {
     const stripe: any = await stripePromise;
 
-    console.log('📌',items);
-    
-
     const { data } = await post("/create-checkout-session", {
       items: items,
       email,
@@ -50,7 +47,8 @@ const OrderProvider = ({ children }: IOrderProviderProps) => {
 
   const getOrders = useCallback(async (idUser: string) => {
     const { data } = await get("/getorder/" + idUser);
-    setOrders(data);
+    
+    setOrders(data.data);
   }, []);
 
   return (
