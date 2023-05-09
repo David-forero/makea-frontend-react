@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFurnitureContext } from "../context/FurnitureContext";
 import { useParams } from "react-router-dom";
 import { useBasketContext } from "../context/BasketContext";
