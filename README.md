@@ -39,6 +39,13 @@ yarn install
 npm i 
 ``` 
 
+### Si tienes stripe usa este comando para el webhook del proyecto 
+
+```bash
+stripe listen --forward-to localhost:4242/stripe_webhooks
+``` 
+
+
 ### Envs Beckend
 ```bash
  "STRIPE_SIGNING_SECRET":"whsec_fCdWRiLJmrG3TIJf0h9ELBtiAPdnDAFj",
