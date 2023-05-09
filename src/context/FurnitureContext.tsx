@@ -31,8 +31,9 @@ const FurnitureProvider = ({ children }: IFornitureProviderProps) => {
     setFurnitures(data.data);
   }, []);
 
-  const getFurniture = useCallback(async (id: string) => {
+  const getFurniture = useCallback(async (id: string, setLoading: any) => {
     const { data } = await get(`/furnitures/${id}`);
+    setLoading(false);    
     setFurniture(data.data);
   }, []);
 
