@@ -3,7 +3,6 @@ import { useFurnitureContext } from "../context/FurnitureContext";
 
 const Home = () => {
   const {furnitures} = useFurnitureContext() 
-  console.log(furnitures);
   
   return (
     <div>

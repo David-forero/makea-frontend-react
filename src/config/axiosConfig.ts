@@ -9,7 +9,7 @@ const Axios = axios.create({
     baseURL: import.meta.env.VITE_BACKEND,
     // timeout: 5000,
     headers: {
-        Authorization: getToken() 
+        // Authorization: getToken() 
     }
 })
 

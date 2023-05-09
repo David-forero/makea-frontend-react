@@ -1,9 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png';
+import { useAuthContext } from "../../context/AuthContext";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { signIn } = useAuthContext();
+  const [loading, setLoading] = useState(false);
 
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().max(50).required("Usuario es requerido"),
+      password: Yup.string().max(100).required("Contraseña es requerida"),
+    }),
+    onSubmit: (data) => {
+      setLoading(true)
+      signIn(data, navigate, setLoading);
+    },
+  });
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,11 +32,15 @@ const SignIn = () => {
     </div>
   
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6" action="#" method="POST">
+      <form  onSubmit={formik.handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium leading-6 text-gray-900">Correo</label>
           <div className="mt-2">
-            <input id="email" name="email" type="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+            <input onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                type="email"
+                name="email" className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${formik.errors.password ? 'border-red-600 border-solid border-2' : ''}`}/>
           </div>
         </div>
   
@@ -26,12 +50,16 @@ const SignIn = () => {
            
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+            <input   onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                type="password"
+                name="password" className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${formik.errors.password ? 'border-red-600 border-solid border-2' : ''}`}/>
           </div>
         </div>
   
         <div>
-          <button type="submit" className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar session</button>
+          <button type="submit" className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> {loading ? 'Cargando...' : 'Iniciar session'}</button>
         </div>
       </form>
   

@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import ListProductsCheckout from "../../common/components/ListProductsCheckout";
+import { useAuthContext } from "../../context/AuthContext";
 import { useBasketContext } from "../../context/BasketContext";
 import { useOrderContext } from "../../context/OrderContext";
 
 const Checkout = ({ show, setShow }: any) => {
   const { items, total } = useBasketContext();
-  const {createOrder} = useOrderContext();
+  const { createOrder } = useOrderContext();
+  const { user, auth } = useAuthContext();
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
@@ -90,19 +95,30 @@ const Checkout = ({ show, setShow }: any) => {
                           Total
                         </p>
                         <p className="text-2xl font-bold leading-normal text-right text-gray-800">
-                          
                           ${items.length > 0 ? total + 15 : 0}
                         </p>
                       </div>
-                      <button
-                        disabled={items.length === 0}
-                        onClick={() => createOrder(items, 'david.forero1812@gmail.com')}
-                        className="text-base leading-none w-full py-5 bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2  text-white rounded-md"
-                      >
-                        {items.length > 0
-                          ? "Finalizar Compra"
-                          : "No hay nada que comprar"}
-                      </button>
+
+                      {!auth ? (
+                        <button
+                          onClick={() => navigate('auth/signin')}
+                          className="text-base leading-none w-full py-5 bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2  text-white rounded-md"
+                        >
+                          Debe iniciar session
+                        </button>
+                      ) : (
+                        <button
+                          disabled={items.length === 0}
+                          onClick={() => createOrder(items, user.email)}
+                          className="text-base leading-none w-full py-5 bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2  text-white rounded-md"
+                        >
+                          {items.length > 0
+                            ? "Finalizar Compra"
+                            : "No hay nada que comprar"}
+                        </button>
+                      )}
+
+                    
                     </div>
                   </div>
                 </div>

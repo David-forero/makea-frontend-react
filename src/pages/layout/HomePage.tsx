@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { BsMinecartLoaded } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.png";
 import { useBasketContext } from "../../context/BasketContext";
 import { useOrderContext } from "../../context/OrderContext";
 import { Checkout } from "../components";
+import { AiOutlineUser } from "react-icons/ai";
+import { useAuthContext } from "../../context/AuthContext";
+
 const Header = () => {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
-  const {items} = useBasketContext();
+  const { items } = useBasketContext();
+  const {auth} = useAuthContext();
 
-  const {showCheckout, setShowCheckout} = useOrderContext();
+  
+
+  const { showCheckout, setShowCheckout } = useOrderContext();
 
   return (
     <>
@@ -21,14 +27,10 @@ const Header = () => {
       <header className="sticky top-0 z-10 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
         {/* left */}
         <div
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           className="relative flex items-center h-10 space-x-2 cursor-pointer my-auto hover:opacity-60"
         >
-          <img
-            src={logo}
-            alt="logo makea"
-            className="h-10 w-12"
-          />
+          <img src={logo} alt="logo makea" className="h-10 w-12" />
           <h2 className="text-blue-800 font-bold text-xl">Makea</h2>
         </div>
 
@@ -47,12 +49,18 @@ const Header = () => {
 
         {/* right */}
         <div className="flex items-center space-x-4 justify-end text-gray-500 ">
-          <p
-            className="hidden md:inline cursor-pointer"
-            onClick={() => navigate("/auth/signin")}
-          >
-            Iniciar Sesión
-          </p>
+          {auth ? (
+            <p>
+              <AiOutlineUser className="h-5 w-5 cursor-pointer" />
+            </p>
+          ) : (
+            <p
+              className="hidden md:inline cursor-pointer"
+              onClick={() => navigate("/auth/signin")}
+            >
+              Iniciar Sesión
+            </p>
+          )}
 
           <div
             onClick={() => setShowCheckout(true)}
