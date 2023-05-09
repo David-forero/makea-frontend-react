@@ -3,24 +3,25 @@ import logo from '../../assets/logo.png';
 import { useAuthContext } from "../../context/AuthContext";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { signIn } = useAuthContext();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       email: "",
-      phone: "",
       password: "",
     },
     validationSchema: Yup.object({
       email: Yup.string().max(50).required("Usuario es requerido"),
       password: Yup.string().max(100).required("Contraseña es requerida"),
-      phone: Yup.string().max(100).required("Contraseña es requerida"),
     }),
     onSubmit: (data) => {
-      signIn(data, navigate);
+      setLoading(true)
+      signIn(data, navigate, setLoading);
     },
   });
   return (
@@ -58,7 +59,7 @@ const SignIn = () => {
         </div>
   
         <div>
-          <button type="submit" className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar session</button>
+          <button type="submit" className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> {loading ? 'Cargando...' : 'Iniciar session'}</button>
         </div>
       </form>
   

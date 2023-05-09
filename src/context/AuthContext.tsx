@@ -26,7 +26,10 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
+   if (localStorage.getItem("auth")) {
+    setUser(JSON.parse(localStorage.getItem("user") || ""))
     setAuth(JSON.parse(localStorage.getItem("auth") || ""));
+   }
   }, [localStorage.getItem("auth")]);
 
   const signIn = useCallback(async (formData: IAuthContext, navigate: any) => {
@@ -37,7 +40,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     navigate('/')
   }, []);
 
-  const signUp = useCallback(async (formData: IAuthContext, navigate: any) => {
+  const signUp = useCallback(async (formData: IAuthContext, navigate: any, setLoading: any) => {
     const { data } = await post("/signup", formData);
     console.log(data);
     
@@ -47,6 +50,8 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
       localStorage.setItem("auth", JSON.stringify(true));
       navigate('/')
     }
+
+    setLoading(false);
   }, []);
 
   return (
