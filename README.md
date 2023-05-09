@@ -44,7 +44,7 @@ npm i
 ```bash
 stripe listen --forward-to localhost:4242/stripe_webhooks
 ``` 
-
+> **👉️ Te va a generar un token secreto para el webhook, copia y pegalo como valor en la variable STRIPE_SIGNING_SECRET en  el archivo env**
 
 ### Envs Beckend
 ```bash
