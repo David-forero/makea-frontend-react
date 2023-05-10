@@ -26,33 +26,37 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-   if (localStorage.getItem("auth")) {
-    setUser(JSON.parse(localStorage.getItem("user") || ""))
-    setAuth(JSON.parse(localStorage.getItem("auth") || ""));
-   }
+    if (localStorage.getItem("auth")) {
+      setUser(JSON.parse(localStorage.getItem("user") || ""));
+      setAuth(JSON.parse(localStorage.getItem("auth") || ""));
+    }
   }, [localStorage.getItem("auth")]);
 
   const signIn = useCallback(async (formData: IAuthContext, navigate: any) => {
     const { data } = await post("/signin", formData);
     setUser(data.data);
+    setAuth(true);
     localStorage.setItem("user", JSON.stringify(data.data));
     localStorage.setItem("auth", JSON.stringify(true));
-    navigate('/')
+    navigate("/");
   }, []);
 
-  const signUp = useCallback(async (formData: IAuthContext, navigate: any, setLoading: any) => {
-    const { data } = await post("/signup", formData);
-    console.log(data);
-    
-    if (data.status === 200) {
-      setUser(data.data);
-      localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("auth", JSON.stringify(true));
-      navigate('/')
-    }
+  const signUp = useCallback(
+    async (formData: IAuthContext, navigate: any, setLoading: any) => {
+      const { data } = await post("/signup", formData);
 
-    setLoading(false);
-  }, []);
+      if (data.status === 200) {
+        setUser(data.data);
+        setAuth(true);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("auth", JSON.stringify(true));
+        navigate("/");
+      }
+
+      setLoading(false);
+    },
+    []
+  );
 
   return (
     <AuthContext.Provider
