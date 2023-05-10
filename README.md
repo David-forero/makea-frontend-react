@@ -259,7 +259,9 @@ Mayor alcance geográfico, lo que permite llegar a una audiencia más amplia y p
 ## 📲 Aplicativo movil
 
 ### Descarga de la apk
-https://expo.dev/accounts/daele/projects/makea_app/builds/c4e72081-ee40-417d-bce9-8bb20df567ff
+opcion 1: https://expo.dev/artifacts/eas/aVyvYPYzj6QX9mc4Kki3qW.apk
+
+opcion 2: [https://expo.dev/accounts/daele/projects/makea_app/builds/c4e72081-ee40-417d-bce9-8bb20df567ff](https://expo.dev/accounts/daele/projects/makea_app/builds/505cb4fd-c234-4240-a0ab-bc1cfaa94ce6)
 
 ### QR si tienes ExpoGo
 ![Captura de pantalla de 2023-05-08 11-36-02](https://user-images.githubusercontent.com/54685136/236876838-12b1106d-5769-4422-b999-f25711fcdff0.png)
